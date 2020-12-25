@@ -9,7 +9,7 @@ y = mx+b form
 
 ### 2) Polynomial Functions 
 
-Enter polynomials up to quintic functions (power of 5)!
+Enter polynomials of any degree!
 
 ![Polynomial Function Demo](https://github.com/valamuri2020/Advanced-Functions-Calculator/blob/master/README/Polynomial.gif)
 

@@ -13,6 +13,7 @@ void disp2();
 void disp3();
 void disphome();
 void returnhome();
+double evaluate (double x, double coeff [], std::size_t capacity);
 
 
 void disphome (){
@@ -39,7 +40,7 @@ void disphome (){
 }
 
 void returnhome (){
-  cout << "\n\n\n Press any key to return home: ";
+    cout << "\n\n\n Press any key to return home: ";
     cin >> home;
     if (home = 'e')
         system ("cls");
@@ -47,10 +48,10 @@ void returnhome (){
 }
 
 void dom(){
-            cout << "Enter starting x: ";
-            cin >> initialx;
-            cout << "Enter final x: ";
-            cin >> finalx;
+    cout << "Enter starting x: ";
+    cin >> initialx;
+    cout << "Enter final x: ";
+    cin >> finalx;
 }
 
 void disp1(){
@@ -74,92 +75,45 @@ void disp1(){
 }
 
 
-
-void cba(){
-            cout << "Enter c: ";
-            cin >> c;
-            cout << "Enter b: ";
-            cin >> b;
-            cout << "Enter a: ";
-            cin >> a;
-}
 void disp2(){
 
 system ("cls");
 
    cout <<"\t\t\t Polynomial Function \n\n\n";
-   cout <<"y = fx^n + e^(n-1) ... + a" ;
-   cout << "\nEnter highest power (cannot exceed 5): ";
+   cout <<"y = (a_n) (x^n) + (a_n-1) x^(n-1) ... + a" ;
+   cout << "\nEnter highest power: ";
    cin >> n;
 
-           switch (n){
-        case 0:
-            disp1();
-        break;
+   double *coeffiecients = new double[n]{};
+   double input_coeff = 0;
+   for (int i = 0; i <= n; i++){
+        std::cout << "a_"<< i << ": ";
+        cin >> input_coeff;
+        coeffiecients[i] = input_coeff;
+   }
+   dom();
+   for(int i = initialx; i <= finalx; i++){
+        y = evaluate(i, coeffiecients, n);
+        cout << "(" << i << "," << y << ") \n";
+   }
 
-        case 1:
-            disp1();
-        break;
-
-        case 2:
-            cba();
-            dom();
-            for (i=initialx; i<=finalx; i++){
-                y = c * pow(i,2) + b*i + a;
-                cout << "(" << i << "," << y << ") \n";
-
-            }
-            returnhome();
-        break;
-
-        case 3:
-            cout << "Enter d: ";
-            cin >> d;
-            cba();
-            dom();
-            for (i=initialx; i<=finalx; i++){
-                y = d*pow(i,3) + c * pow(i,2) + b*i + a;
-                cout << "(" << i << "," << y << ") \n";
-            }
-            returnhome();
-        break;
-
-        case 4:
-            cout << "Enter e: ";
-            cin >> e;
-            cout << "Enter d: ";
-            cin >> d;
-            cba();
-            dom();
-            for (i=initialx; i<=finalx; i++){
-                y = e*pow(i,4) + d*pow(i,3) + c * pow(i,2) + b*i + a;
-                cout << "(" << i << "," << y << ") \n";
-            }
-            returnhome();
-        break;
-
-        case 5:
-            cout << "Enter f: ";
-            cin >> f;
-            cout << "Enter e: ";
-            cin >> e;
-            cout << "Enter d: ";
-            cin >> d;
-            cba();
-            dom();
-            for (i=initialx; i<=finalx; i++){
-                y = f*pow(i,5) + e*pow(i,4) + d*pow(i,3) + c * pow(i,2) + b*i + a;
-                cout << "(" << i << "," << y << ") \n";
-            }
-            returnhome();
-        break;
-
-       default: cout << "\n\nERROR: 5 is the highest power";
-        }
-
-
+   delete[]coeffiecients;
+   coeffiecients = nullptr;
 
 }
+double evaluate (double x, double coeff [], std::size_t capacity){
+    double y{};
+    double sum{};
+    double n = capacity-1;
+    for (std::size_t i = 0; i < capacity; i++){
+        sum+= coeff[i] * std::pow(x, n-i);
+    }
+
+    y = sum;
+    return y;
+}
+
+
 void disp3(){
 system("cls");
 
